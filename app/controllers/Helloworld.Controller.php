@@ -1,12 +1,14 @@
 <?php
 
-// namespace App\Controllers;
+use Core\Controller;
+use Core\Views;
 
-class Helloworld{
+class Helloworld extends Controller{
     public function Home(){
-        echo "Hello World!";
+        echo Views::Home();
     }
+    
     public function Home2($value){
-        echo "Hello 2 World! - " . print_r($value);
+        echo Views::Home() . " - " . print_r($value);
     }
 }

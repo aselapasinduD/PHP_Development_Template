@@ -6,12 +6,25 @@ spl_autoload_register(function($class){
         $class2 = explode('\\', $class);
         $class = end($class2);
     }
-    // if (is_readable(ROOT_DIR . '/app/controllers/'.$class . '.Controller.php')) {
-    //     include_once ROOT_DIR . '/app/controllers/'.$class . '.Controller.php';
-    // }  else
-    if (is_readable(ROOT_DIR . 'app/models/' . $class . '.Model.php')) {
-        include_once ROOT_DIR . 'app/models/' . $class . '.Model.php';
-    } else if (is_readable(ROOT_DIR . '/app/controllers/Controller.php')) {
-        include_once ROOT_DIR . 'app/controllers/Controller.php';
+
+    $coreClassPaths = [
+        ROOT_DIR . 'core/Controller.php',
+        ROOT_DIR . 'core/Views.php',
+        ROOT_DIR . 'core/Router.php',
+    ];
+
+    $paths = [
+        ROOT_DIR . 'app/models/' . $class . '.Model.php'
+    ];
+
+    foreach ($coreClassPaths as $path){
+        if (is_readable($path)){
+            include_once $path;
+        }
+    }
+    foreach ($paths as $path){
+        if(is_readable($path)){
+            include_once $path;
+        }
     }
 });
