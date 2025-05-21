@@ -7,14 +7,25 @@ spl_autoload_register(function($class){
         $class = end($class2);
     }
 
+    /**
+     * Autoload Core Files (Do not delete core files)
+     * 
+     * @since 1.0.0
+     */
     $coreClassPaths = [
         ROOT_DIR . 'core/Controller.php',
         ROOT_DIR . 'core/Views.php',
         ROOT_DIR . 'core/Router.php',
     ];
 
+    /**
+     * Autoload Model class files
+     * 
+     * @since 1.0.0
+     */
     $paths = [
-        ROOT_DIR . 'app/models/' . $class . '.Model.php'
+        ROOT_DIR . 'app/models/' . $class . '.model.php',
+        ROOT_DIR . 'app/controllers/' . $class . '.controller.php'
     ];
 
     foreach ($coreClassPaths as $path){
